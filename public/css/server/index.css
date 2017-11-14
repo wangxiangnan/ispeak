@@ -1,0 +1,123 @@
+/*-------      public       --------*/
+body{
+	font-size: 16px; margin: 0;
+}
+p{margin-top: 0; margin-bottom: 0}
+img{
+	border: 0; vertical-align: middle;
+}
+input{
+  padding-top: 0; padding-bottom: 0; border: 0;
+}
+
+/* --------    login    ------   */
+
+.form :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: #fff;opacity:.5;
+}
+
+.form ::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: #fff;opacity:.5;
+}
+
+.form input:-ms-input-placeholder{
+    color: #fff;opacity:.5;
+}
+.form input::-webkit-input-placeholder{
+    color: #fff;opacity:.5;
+}
+.form{
+	width: 452px;
+	max-width: 90%;
+	margin: 6.2% auto 0;
+	text-align: center;
+}
+.wrap_bg{
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background: url(/images/server/login_bg.png) 50% 50% no-repeat;
+	background-size: cover;
+	z-index: -1;
+}
+.form_item{
+	
+}
+.logo{
+	width: 10em;
+}
+.login_tips{
+	line-height: 1; margin-top: 7%; font-size: 2em; color: #63e2df;
+}
+.input_item{
+	margin-top: 5%;
+}
+.first_input_item{
+	margin-top: 8.8%;
+}
+.input_wrapper{
+	width: 100%;
+	padding-bottom: 2.2%;
+	border-bottom: 2px solid #fff;
+	overflow: hidden;
+}
+
+.input_label{
+  float: left;
+	width: 40px;
+  height: 44px;
+  background: url(/images/server/sprite.png) no-repeat;
+}
+.input{
+	float: right;
+  width: 88%;
+  line-height: 44px;
+  background-color: transparent;
+  color: #fff;
+  font-size: 1.75em;
+}
+.input:focus{
+  outline: none;
+}
+.password_label{
+  background-position-y: -48px;
+}
+.submit{
+  margin-top: 12%;
+  -moz-box-sizing:border-box; /* Firefox */
+  -webkit-box-sizing:border-box;
+  box-sizing: border-box;
+  width: 100%;
+  font-size: 1.75em;
+  line-height: 1.79em;
+  border: 1px solid #fff;
+  border-radius: 1em;
+  color: #fff;
+  background-color: rgba(255,255,255, .17);
+}
+.submit:focus{
+  outline: none;
+  border-color: #6587b8;
+}
+
+
+
+
+@media screen and (max-width: 720px) {
+    body {
+        font-size: 10px;
+    }
+    .input_label{
+      background-size: 384px 173px;
+      width: 20px;
+      height: 22px;
+    }
+    .input{
+      line-height: 22px;
+    }
+    .password_label{
+      background-position-y: -24px;
+    }
+}
