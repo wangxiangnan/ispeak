@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" >
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
@@ -8,38 +8,39 @@
 	<link rel="stylesheet" type="text/css" href="/css/server/index.css" />
 	<title>我代言后台管理系统</title>
 </head>
-<body>
-	<div class="wrap">
+<body class="login" v-on:click="tapBody">
+	<div class="login_wrap wrap" id="app">
 		<div class="wrap_bg"></div>
 		<!-- form表单 start -->
-		<form id="form" class="form">
+		<form id="form" class="login_form">
 			
-			<div class="form_item">
+			<div class="login_item">
 				<p class="logo_wrapper">
 				<img class="logo" src="/images/server/logo.png" alt="logo" />
 				</p>
 			</div>
-			<div class="form_item login_tips">
+			<div class="login_item login_tips">
 				我代言后台管理系统
 			</div>
-			<div class="form_item input_item first_input_item">
+			<div class="login_item input_item first_input_item">
 				<p class="input_wrapper">
 				  <label for="userName" class="input_label userName_label"></label>
-					<input class="input" type="text" placeholder="请输入账号" name="userName" id="userName" />
+					<input class="input" type="text" placeholder="请输入账号" name="userName" id="userName" v-model="userName" />
 				</p>
 			</div>
-			<div class="form_item input_item">
+			<div class="login_item input_item">
 				<p class="input_wrapper">
 					<label for="password" class="input_label password_label"></label>
 					<input class="input" type="text" placeholder="请输入密码" name="password" id="password" />
 				</p>
 			</div>
-			<div class="form_item">
-				<button type="submit" class="submit">登录</button>
+			<div class="login_item">
+				<button type="submit" class="submit" v-on:click="onLogin">登录</button>
 			</div>
 		</form>		
 		<!-- form表单 end -->
 	</div>
-	
+<script src="/framework/vue/vue.js"></script>
+<script src="/js/server/login.js"></script>
 </body>
 </html>

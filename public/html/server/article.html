@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1, user-scalable=no,width=device-width">
+	<meta name="renderer" content="webkit">
+	<link rel="stylesheet" type="text/css" href="/css/server/index.css" />
+	<title>我代言后台管理</title>
+</head>
+<body class="article">
+	<div class="article_wrap wrap" id="app">
+    <div class="wrap_bg"></div>
+    <!-- 标题 start -->
+		<div class="article_hd">
+			<div class="manage_title">
+				<p class="manage_title_text">我代言后台管理系统</p>
+			</div>
+			<div class="manage_user">
+				<p class="manage_user_name">欢迎: {{ userInfo.name }}</p>
+			</div>
+		</div>
+		<!-- 标题 end -->
+		<!-- 内容 start -->
+		<div class="article_cont">
+			<div class="article_aside">
+				<ul class="manage_tab_list" id="tabList">
+					<li class="manage_tab_item" v-bind:class="{ active: item.isActive }" v-for="(item, index) in tabList" :key="index" v-on:click="toggleTab" v-bind:data-index="item.id" >{{ item.text }}</li>
+					<!-- <li class="manage_tab_item active" data-index="1">文章列表</li> -->
+				</ul>
+			</div>
+
+			<div class="article_main">
+				<ul class="manage_cont_list" id="contList">
+					<!-- 文章录入 start -->
+					<li class="manage_cont manage_cont_write" v-bind:class="tabList[0].isActive && 'active'">
+						<form id="publish" class="publish">
+							<p class="publish_input_item">
+								<label class="input_title" for="articleUrl">文章链接</label>
+								<input type="text" class="input_area" name="articleUrl" id="articleUrl" value="http://mp.weixin.qq.com" />
+								<span class="confirm_btn">生成</span>
+							</p>
+							<p class="publish_input_item">
+								<label class="input_title" for="articleAddr">文章来源</label>
+								<input type="text" class="input_area" name="articleAddr" id="articleAddr" value="睡前阅读" />
+								<span class="confirm_btn">待确定</span>
+							</p>
+							<p class="publish_input_item">
+								<label class="input_title" for="articleTime">原文时间</label>
+								<input type="text" class="input_area" name="articleTime" id="articleTime" value="2017-11-08" />
+								<span class="confirm_btn">待确定</span>
+							</p>
+							<p class="publish_input_item">
+								<label class="input_title" for="articleTitle">标题</label>
+								<input type="text" class="input_area" name="articleTitle" id="articleTitle" value="今天起，做一个不好相处的人" />
+								<span class="confirm_btn">已确定</span>
+							</p>
+							<div class="publish_imgs_item">
+								<span class="imgs_item_title input_title">图片</span>
+								<ul class="imgs_list">
+									<li class="imgs_item" v-for="item in imgList"><img src="/images/server/star.png" alt="" class="imgs_item_img" /></li>
+
+									<li class="imgs_tool">
+										<h4 class="imgs_tool_title">选中封面</h4>
+										<div class="imgs_tool_thumb">
+											<span class="imgs_tool_thumb_tips"><span>图片</span><span>待选</span></span>
+											<img src="/images/server/star.png" alt="" class="imgs_item_img" />
+
+										</div>
+										<span class="imgs_tool_btn">删除</span>
+									</li>
+								</ul>
+							</div>
+							<p class="publish_btn_item">
+								<button class="publish_btn" type="submit">确定发布</button>
+							</p>
+						</form>
+					</li>
+					<!-- 文章录入 end -->
+					<!-- 文章列表 start -->
+					<li class="manage_cont manage_cont_article" v-bind:class="tabList[1].isActive && 'active'">
+						<div class="search_area">
+              <input class="search_input" type="text" placeholder="请输入标题关键字" />
+              <span class="search_btn">搜索</span>
+            </div>
+
+            <div class="article_list_area">
+              <div class="article_manager">
+                <div class="article_manager_hd">
+                  <h4 class="article_manager_hd_item">文章</h4>
+                  <h4 class="article_manager_hd_item">公众号</h4>
+                  <h4 class="article_manager_hd_item">原发布时间</h4>
+                  <h4 class="article_manager_hd_item">录入人</h4>
+                  <h4 class="article_manager_hd_item">录入时间</h4>
+                  <h4 class="article_manager_hd_item">选择</h4>
+                </div>
+                <div class="article_manager_bd">
+                  <ul class="article_manager_article_list">
+
+                    <li class="article_manager_article_item" v-for="(item, index) in artcleList" :key="item.id">
+                      <div class="article_manager_article__item article_manager_article_info">
+                        <h4 class="article_img_box">
+                          <img v-bind:src="item.imgUrl" alt="" class="article_img" />
+                        </h4>
+                        <p class="article_desc">{{ item.desc }}</p>
+                      </div>
+                      <div class="article_manager_article__item article_manager_article_origin">
+													{{ item.oriTile }}
+                      </div>
+                      <div class="article_manager_article__item article_manager_article_oritime">
+													{{ item.oriPubTime }}
+                      </div>
+                      <div class="article_manager_article__item article_manager_article_author">
+													{{ item.author }}
+                      </div>
+                      <div class="article_manager_article__item article_manager_article_time">
+													{{ item.curPubTime }}
+                      </div>
+                      <div class="article_manager_article__item article_manager_article_sel">
+                        <input type="radio" class="article_radio" v-bind:checked="item.isChecked" />
+                      </div>  
+                    </li>
+
+                  </ul>
+                </div>
+                <div class="article_manager_ft">
+                  <div class="article_manager_ft_left">
+                  	<span class="article_manager_ft_btn">首页</span>
+                  	<span class="article_manager_ft_btn">上一页</span>
+                  	<p class="article_manager_ft_pagenum">
+                  		第<input type="text" class="page_num" /> / <span>34</span> 页
+                  	</p>
+                  	<span class="article_manager_ft_btn">下一页</span>
+                  	<span class="article_manager_ft_btn">跳转</span>
+                  </div>
+                  <div class="article_manager_ft_right">
+                  	删除选择文章
+                  </div>
+                </div>
+              </div>
+            </div>
+					</li>
+					<!-- 文章列表 end -->
+				</ul>
+
+			</div>
+		</div>
+		<!-- 内容 end -->
+	</div>
+
+<script src="/libs/babel.js"></script>
+<script src="/framework/vue/vue.js"></script>
+<script src="/js/server/article.js"></script>
+</body>
+</html>

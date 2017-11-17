@@ -9,5 +9,9 @@ router.get('/', function(req, res, next) {
 router.get('/login', function(req, res, next) {
   res.sendfile(process.cwd() + '/public/html/server/login.html');
 });
+router.get('/article', function(req, res, next) {
+  res.sendfile(process.cwd() + '/public/html/server/article.html');
+});
+
 
 module.exports = router;
